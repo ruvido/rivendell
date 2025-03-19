@@ -1,0 +1,16 @@
+services:
+  webhook:
+    build: .
+    ports:
+      - "${PORT}:${PORT}"  # Uses the PORT from env
+    user: root
+    environment:
+      - PORT=${PORT}
+      - SECRET=${SECRET}
+      - SCRIPT_PATH=/app/deploy.sh
+    volumes:
+      - .:/app
+      - ./rsa:/app/rsa
+      - ./deploy:/app/deploy
+    env_file:
+      - .env  # Load environment variables from .env
