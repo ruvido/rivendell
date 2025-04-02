@@ -15,14 +15,12 @@ REPO_URL="git@github.com:scanzy/flutterchat.git"
 
 # Check if the repository directory already exists
 if [ -d "$REPO_DIR" ]; then
-    echo "Directory $REPO_DIR already exists. Pulling the latest changes..."
-    cd "$REPO_DIR"
-    git pull
-else
-    echo "Cloning the repository..."
-    git clone "$REPO_URL"
-    cd "$REPO_DIR"
+    echo "Directory $REPO_DIR already exists. Removing it..."
+    rm -rf "$REPO_DIR"
 fi
+echo "Cloning the repository..."
+git clone "$REPO_URL"
+cd "$REPO_DIR"
 
 # Install dependencies and build the project
 echo "Installing flutter dependencies"
